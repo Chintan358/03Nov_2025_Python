@@ -27,5 +27,4 @@ email = "abc@gmail.com"
 
 # print(f"my name is {name} and email is {email}")
 
-
-print(r"Hello\b \\\" \n Python")
+print(r"Hello\b \\\" \n Python")    

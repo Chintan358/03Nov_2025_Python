@@ -1,5 +1,5 @@
 
-number = 1356
+number = 106
 result = 0 
 mul = 1
 while number !=0:

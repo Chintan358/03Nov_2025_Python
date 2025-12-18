@@ -81,8 +81,25 @@
 #     json.dump(d,f)
 
 
-with open("text.txt",'r') as f:
-    data = f.readlines()
-    for i in data:
-        if 'a' in i.lower():
-            print(i)
+# with open("text.txt",'r') as f:
+#     data = f.readlines()
+#     for i in data:
+#         if 'a' in i.lower():
+#             print(i)
+
+import pickle
+st = {
+    "name":"Parth",
+    "emial":"parth@gmail.com",
+    "phone" :"4568789658"
+}
+
+#pikling
+# with open("obj.pkl",'wb') as f:
+#     pickle.dump(st,f)
+#     print("success")
+
+#unpickling
+# with open("obj.pkl",'rb') as f:
+#     data = pickle.load(f)
+#     print(data)

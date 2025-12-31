@@ -1,0 +1,34 @@
+import re
+
+# st = "Sun rises in in east"
+
+# k = re.match("S",st)
+# k = re.search("in",st)
+# k = re.findall("in",st)
+# k = re.finditer("in",st)
+# k = re.sub("s","T",st)
+# k = re.split(" ",st)
+# print(k)
+
+# st = "tocps tech"
+# k = re.match('t.c',st)
+# k = re.search('t.c',st)
+# k = re.findall('t.c',st)
+# k = re.finditer('t.c',st)
+# print(next(k))
+# print(next(k))
+
+
+# st = "toops tech"
+# k = re.search("^tech",st)
+# k = re.search("ch$",st)
+# k = re.search("to*p",st)
+# k = re.search("to+p",st)
+# k = re.search("to?p",st)
+# print(k)
+
+
+
+st = "topss"
+k = re.search("^[a-z0-9]{5,10}$",st)
+print(k)

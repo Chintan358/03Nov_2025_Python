@@ -17,24 +17,24 @@
 # test()
 
 
-def add(func):
-    def execute(*a):
-        func(*a)
-        sum = 0
-        for i in a:
-            sum+=i
-        print(f"sum is  : {sum}")        
-    return execute
+# def add(func):
+#     def execute(*a):
+#         func(*a)
+#         sum = 0
+#         for i in a:
+#             sum+=i
+#         print(f"sum is  : {sum}")        
+#     return execute
 
 
-def mul(func):
-    def execute(*a):
-        func(*a)
-        sum = 1
-        for i in a:
-            sum*=i
-        print(f"mul is  : {sum}")        
-    return execute
+# def mul(func):
+#     def execute(*a):
+#         func(*a)
+#         sum = 1
+#         for i in a:
+#             sum*=i
+#         print(f"mul is  : {sum}")        
+#     return execute
 
 # @add
 # @mul
@@ -48,3 +48,30 @@ def mul(func):
 #     print(data)
 
 # setdata(ffd)
+
+
+def numbersOnly(func):
+    def execute(a):
+        if str(a).isdigit():
+            func(a)
+        else:
+            print("Invalid input")
+    return execute
+
+
+def charOnly(func):
+    def execute(a):
+        if str(a).isalpha():
+            func(a)
+        else:
+            print("Invalid input")
+    return execute
+
+
+
+@charOnly
+def data(value):
+    print(value)
+
+
+data("123")

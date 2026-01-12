@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tf {
+            width: 150px;
+            height: 30px;
+            border: 1px solid green;
+            background-color: aquamarine;
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" method="post">
+        <label for="uname">Username</label>
+        <input type="text" id="uname" name="uname" class="tf">
+
+        <br>
+        <br>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" class="tf">
+
+        <br>
+        <br>
+
+        <label for="pass">Password</label>
+        <input type="password" id="pass" name="pass" class="tf">
+
+        <br>
+        <br>
+
+        <label for="phone">Phone</label>
+        <input type="number" id="phone" name="phone" class="tf">
+
+        <br>
+        <br>
+        <label for="">Gender</label>
+        <input type="radio" name="gender" value="male" checked>Male
+        <input type="radio" name="gender" value="female">Female
+
+        <br>
+        <br>
+
+        <label for="">Languages</label>
+        <input type="checkbox" value="eng" name="lng">English
+        <input type="checkbox" value="hin" name="lng">Hindi
+        <input type="checkbox" value="guj" name="lng">Gujarati
+
+        <br>
+        <br>
+
+        <label for="">Country</label>
+        <select name="Country" id="country" class="tf">
+            <option value="1">India</option>
+            <option value="2">Usa</option>
+            <option value="3">UK</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label for="">DOB</label>
+        <input type="date" name="dob" class="tf">
+
+        <br>
+        <br>
+        <label for="">Color</label>
+        <input type="color" name="clr" class="tf">
+
+        <br>
+        <br>
+        <label for="">Address</label>
+        <textarea name="addrsss" id="address"></textarea>
+        <br>
+        <br>
+
+        <input type="submit">
+        <input type="reset">
+
+    </form>
+</body>
+
+</html>

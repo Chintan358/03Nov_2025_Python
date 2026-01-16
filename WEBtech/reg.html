@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <script>
+
+        function validation() {
+
+
+            var uname = document.getElementById("uname")
+            var email = document.getElementById("email")
+            var pass = document.getElementById("pass")
+            var cpass = document.getElementById("cpass")
+
+            var unameErr = document.getElementById("unameErr")
+            var emailErr = document.getElementById("emailErr")
+            var passErr = document.getElementById("passErr")
+            var cpassErr = document.getElementById("cpassErr")
+
+            var btn = document.getElementById("btn")
+
+
+            var unameExp = /^[a-z]+$/
+            var emailExp = /^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/
+
+            if (uname.value == "" || uname.value == null) {
+                unameErr.innerHTML = "username required !!!"
+                uname.style.border = "1px solid red"
+                btn.disabled = true
+            } else if (!unameExp.test(uname.value)) {
+                unameErr.innerHTML = "only char. allowed"
+                uname.style.border = "1px solid red"
+                btn.disabled = true
+            }
+            else {
+                unameErr.innerHTML = ""
+                btn.disabled = false
+                uname.style.border = ""
+            }
+
+
+            if (email.value == "" || email.value == null) {
+                emailErr.innerHTML = "email Required !!!"
+                email.style.border = "1px solid red"
+                btn.disabled = true
+            } else if (!emailExp.test(email.value)) {
+                emailErr.innerHTML = "Invalid format !!!"
+                email.style.border = "1px solid red"
+                btn.disabled = true
+            }
+            else {
+                emailErr.innerHTML = ""
+                btn.disabled = false
+                email.style.border = ""
+
+            }
+
+
+            if (pass.value == "" || pass.value == null) {
+                passErr.innerHTML = "pass Required !!!"
+                pass.style.border = "1px solid red"
+                btn.disabled = true
+            }
+            else {
+                passErr.innerHTML = ""
+                btn.disabled = false
+                pass.style.border = ""
+            }
+
+            if (cpass.value == "" || cpass.value == null) {
+                cpassErr.innerHTML = "Cpass Required !!!"
+                btn.disabled = true
+                cpass.style.border = "1px solid red"
+            }
+            else if (pass.value !== cpass.value) {
+                cpassErr.innerHTML = "Cpass must be same as pass !!!"
+                btn.disabled = true
+                cpass.style.border = "1px solid red"
+            }
+            else {
+                cpassErr.innerHTML = ""
+                btn.disabled = false
+                cpass.style.border = ""
+            }
+
+
+
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-6 mx-auto mt-5 card p-3 ">
+                <h2 align="center" class="text-danger">Registration Form</h2>
+                <hr>
+                <form action="">
+                    <div class="form-group">
+                        <label for="">Username</label>
+                        <input type="text" class="form-control" id="uname" onkeyup="validation()">
+                        <span id="unameErr" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" id="email" onkeyup="validation()">
+                        <span id="emailErr" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" id="pass" onkeyup="validation()">
+                        <span id="passErr" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="">Confirm password</label>
+                        <input type="password" class="form-control" id="cpass" onkeyup="validation()">
+                        <span id="cpassErr" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <input type="submit" id="btn" class="btn btn-success">
+                    <input type="reset" class="btn btn-primary">
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

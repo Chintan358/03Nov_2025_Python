@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: #3F5EFB;
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+}
+
+header {
+    width: 100%;
+    height: 15%;
+    background-color: black;
+}
+
+
+footer {
+    width: 100%;
+    height: 15%;
+
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login {
+    width: 20%;
+    height: 40%;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.logo {
+    width: 20%;
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    width: 80%;
+    height: 100%;
+    float: right;
+    color: #FFF;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS', cursive;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    width: 150px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.tf {
+    width: 145px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.btn {
+    width: 70px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.sm {
+    background-color: bisque;
+}
+
+.re {
+    background-color: cadetblue;
+}

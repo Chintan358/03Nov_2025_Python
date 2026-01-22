@@ -4,3 +4,6 @@ from myapp.models import *
 
 class StudentData(admin.ModelAdmin):
     list_display=["id","name","email","phone","age","fees","dob","info","gender"]
+
+admin.site.register(Student)
+admin.site.register(Product)

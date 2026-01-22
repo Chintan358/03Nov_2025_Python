@@ -12,8 +12,14 @@
 </head>
 
 <body>
-    <h1>Hello</h1>
-    <img src="static/image/logo.png" alt="">
+    {{msg}}
+    <form action="{%url 'reg'%}" method="post">
+        {%csrf_token%}
+        <input type="text" name="name" placeholder="Enter name">
+        <input type="text" name="price" placeholder="Enter price">
+        <input type="text" name="qty" placeholder="Enter qty">
+        <input type="submit">
+    </form>
 </body>
 
 </html>

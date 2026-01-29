@@ -6,7 +6,7 @@ class CapitalModel(admin.ModelAdmin):
     list_display = ['name','country']
 
 class ProductModel(admin.ModelAdmin):
-    list_display = ['name','price','qty','category']
+    list_display = ['name','price','qty','category','image']
 
 admin.site.register(Country)
 admin.site.register(Capital,CapitalModel)

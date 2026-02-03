@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+        })
+
+        function myfunc() {
+            // var data = document.getElementById("data").value
+            var data = $("#data").val()
+
+            $.get
+                (
+                    "reg",
+                    { data },
+                    function (rt) {
+                        $("#tdata").html(rt)
+                    }
+                )
+        }
+
+        function search(q) {
+            $.get("search",{q},function(rt){
+                $("#searchItem").html(rt)
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" name="data" id="data" onkeyup="myfunc()">
+    <button onclick="myfunc()">Click me</button>
+    <div id="tdata"></div>
+
+    <br>
+    <hr>
+    <br>
+
+    <input type="text" name="search" id="search" placeholder="Search..." onkeyup="search(value)">
+    <div id="searchItem"></div>
+
+</body>
+
+</html>

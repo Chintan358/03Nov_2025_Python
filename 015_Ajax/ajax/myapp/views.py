@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from myapp.models import *
 # Create your views here.
 def index(request):
@@ -28,3 +28,12 @@ def search(request):
         resp+=f"<li>{product.name}</li>"
     resp+="</ul>"
     return HttpResponse(resp)
+
+def countries(request):
+    clist = Country.objects.all()
+    return JsonResponse({"clist":list(clist.values())})
+
+def states(request):
+    cid = request.GET['cid']
+    slist = State.objects.filter(country_id=cid)
+    return JsonResponse({"slist":list(slist.values())})

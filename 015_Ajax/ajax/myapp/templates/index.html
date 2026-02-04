@@ -11,7 +11,7 @@
     <script>
 
         $(document).ready(function () {
-
+            countries()
         })
 
         function myfunc() {
@@ -29,8 +29,30 @@
         }
 
         function search(q) {
-            $.get("search",{q},function(rt){
+            $.get("search", { q }, function (rt) {
                 $("#searchItem").html(rt)
+            })
+        }
+
+        function countries() {
+            $.get("countries", {}, function (rt) {
+
+                var options = "<option value='0'>---Select country---</option>"
+                rt.clist.map(ele => {
+                    options += `<option value=${ele.id}>${ele.name}</option>`
+                })
+                $("#country").html(options)
+            })
+        }
+
+        function states(cid) {
+            $.get("states", { cid }, function (rt) {
+
+                var options = "<option value='0'>---Select State---</option>"
+                rt.slist.map(ele => {
+                    options += `<option value=${ele.id}>${ele.name}</option>`
+                })
+                $("#state").html(options)
             })
         }
     </script>
@@ -47,6 +69,26 @@
 
     <input type="text" name="search" id="search" placeholder="Search..." onkeyup="search(value)">
     <div id="searchItem"></div>
+
+    <br>
+    <hr>
+    <br>
+
+    <select name="country" id="country" onchange="states(value)">
+        <option value="0">---Select country---</option>
+    </select>
+
+    <select name="state" id="state">
+        <option value="0">---Select State---</option>
+    </select>
+
+    <select name="city" id="city">
+        <option value="0">---Select City---</option>
+    </select>
+
+    <hr>
+
+    <h2><a href="{%url 'index1'%}">CRUD APP</a></h2>
 
 </body>
 

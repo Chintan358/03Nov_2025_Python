@@ -15,7 +15,28 @@
 
         $(document).ready(function () {
             display()
+            $("#upbtn").hide()
         })
+
+        function search(q) {
+            $.get('search', { q }, function (rt) {
+
+                var rows = ""
+                rt.students.map(ele => {
+                    rows += `<tr>
+                                    <td>${ele.id}</td>
+                                    <td>${ele.name}</td>
+                                    <td>${ele.email}</td>
+                                    <td>${ele.phone}</td>
+                                    <td>
+                                        <button  class="btn btn-sm btn-warning" onclick='studentbyid(${ele.id})'>Edit</button>
+                                        <button class="btn btn-sm btn-danger" onclick='deletestudent(${ele.id})' >Delete</button>
+                                    </td>
+                                </tr>`
+                })
+                $("#tdata").html(rows)
+            })
+        }
 
         function display() {
             $.get('display', {}, function (rt) {
@@ -36,7 +57,6 @@
                 $("#tdata").html(rows)
             })
         }
-
         function addStudent(event) {
 
             var name = $("#name").val()
@@ -77,9 +97,53 @@
                 $("#name").val(rt.student[0].name)
                 $("#email").val(rt.student[0].email)
                 $("#phone").val(rt.student[0].phone)
+
+                $("#upbtn").show()
+                $("#smbtn").hide()
             })
         }
 
+        function updateStudent() {
+
+            var id = $("#id").val()
+            var name = $("#name").val()
+            var email = $("#email").val()
+            var phone = $("#phone").val()
+            var csrfmiddlewaretoken = $('input[name="csrfmiddlewaretoken"]').val();
+
+
+
+            $.post("update", { csrfmiddlewaretoken, id, name, email, phone }, function (rt) {
+                alert(rt)
+
+                $("#id").val("")
+                $("#name").val("")
+                $("#email").val("")
+                $("#phone").val("")
+
+                display()
+
+                $("#upbtn").hide()
+                $("#smbtn").show()
+            })
+        }
+
+        function checkemail(email) {
+            $.get("checkemail", { email }, function (rt) {
+
+                if (rt == 'True') {
+                     $('#smbtn').attr('disabled','disabled');
+                    $("#email").css("border", "1px solid red")
+                    $("#emailErr").html("Email alredy exist !!!")
+                }
+                else{
+
+                     $("#email").css("border", "")
+                    $("#emailErr").html("")
+                     $('#smbtn').attr('disabled',false);
+                }
+            })
+        }
     </script>
 </head>
 
@@ -108,7 +172,9 @@
 
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="Enter email" id="email">
+                            <input type="email" class="form-control" placeholder="Enter email" id="email"
+                                onkeyup="checkemail(value)">
+                            <span id="emailErr" class="text-danger"></span>
                         </div>
 
                         <div class="mb-3">
@@ -116,8 +182,11 @@
                             <input type="text" class="form-control" placeholder="Enter phone" id="phone">
                         </div>
 
-                        <button class="btn btn-success w-100" onclick="addStudent()">
+                        <button class="btn btn-success w-100" onclick="addStudent()" id="smbtn">
                             Submit
+                        </button>
+                        <button class="btn btn-success w-100" onclick="updateStudent()" id="upbtn">
+                            Update
                         </button>
 
                     </div>
@@ -131,6 +200,7 @@
                         Student List
                     </div>
                     <div class="card-body p-0">
+                        <input type="text" class="form-control" placeholder="Search...." onkeyup="search(value)">
                         <table class="table table-bordered table-striped m-0 text-center">
                             <thead class="table-secondary">
                                 <tr>

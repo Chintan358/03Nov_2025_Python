@@ -6,5 +6,8 @@ urlpatterns = [
     path("reg",reg,name="reg"),
     path("display",display,name="display"),
     path("delete",delete_student,name="delete"),
-    path("stbyid",stbyid,name="stbyid")
+    path("stbyid",stbyid,name="stbyid"),
+    path("update",update_student,name="update"),
+    path("search",search,name="search"),
+    path("checkemail",checkemail,name="checkemail")
 ]

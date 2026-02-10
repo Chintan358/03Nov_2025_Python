@@ -3,5 +3,6 @@ from myapp.views import *
 
 
 urlpatterns = [
-    path("",index,name="index")
+    path("",index,name="index"),
+    path("reportcard",reportcard,name="reportcard")
 ]

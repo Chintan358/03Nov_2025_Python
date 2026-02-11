@@ -35,12 +35,14 @@
 
                     <tr>
                         <td>
-                            <a href="{%url 'reportcard'%}?stid={{student.id}}">
+                            <a href="{%url 'reportcard'%}?stid={{student.id}}&action=card">
                                 {{student.student_id.st_id}}
                             </a>
                         </td>
                         <td>{{student.name}}</td>
-                        <td>{{student.email}}</td>
+                        <td>{{student.email}} <a href="{%url 'reportcard'%}?stid={{student.id}}&action=send">
+                                SEND
+                            </a></a></td>
                         <td>{{student.age}}</td>
                         <td>{{student.dept.name}}</td>
                     </tr>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.mail import send_mail,EmailMessage
 from django.conf import settings
-
+import requests
 
 # Create your views here.
 def index(request):
@@ -27,4 +27,18 @@ def sendfile(request):
      msg.send()
 
      return HttpResponse("file sent")
+
+def sendsms(request):
+    
+    phone = request.POST['phone']
+    message = request.POST['message']
+    APIKEY=""
+    url = f"https://www.fast2sms.com/dev/bulkV2?authorization={APIKEY}&route=q&message={message}&numbers={phone}"
+
+    headers = {"accept": "application/json"}
+
+    response = requests.get(url, headers=headers)
+
+    print(response.text)
+    return render(request,"index.html",{"success":"message sent successfully"})
    

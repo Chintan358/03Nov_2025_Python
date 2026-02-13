@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.core.mail import send_mail,EmailMessage
 from django.conf import settings
 import requests
+import razorpay
 
 # Create your views here.
 def index(request):
@@ -42,3 +43,14 @@ def sendsms(request):
     print(response.text)
     return render(request,"index.html",{"success":"message sent successfully"})
    
+
+
+def payment(request):
+
+    amt = int(request.GET['amt'])
+    client = razorpay.Client(auth=("rzp_test_SF5R7ur5nvvYLR", "NgUDBnx9JpMGHTWixBznB0S3"))
+
+    data = { "amount": amt*100, "currency": "INR", "receipt": "order_rcptid_11" }
+    payment = client.order.create(data=data) # Amount is in currency subunits.
+   
+    return JsonResponse(payment)

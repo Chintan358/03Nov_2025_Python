@@ -8,7 +8,8 @@
     <title>Compose Mail & SMS</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
     <style>
         body {
             background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
@@ -83,77 +84,303 @@
 
 <body>
 
-    <div class="card mail-card">
+    <!DOCTYPE html>
 
-        <div class="mail-header">
-            📨 Communication Center
-        </div>
+    <html lang="en">
 
-        <div class="card-body p-4">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Communication Center</title>
 
-            <!-- ================= EMAIL FORM ================= -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 
-            <h5 class="mb-3 fw-bold text-primary">📧 Send Email</h5>
-            {{msg}}
-            <form action="{%url 'sendmail'%}" method="post">
-                {%csrf_token%}
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">From Email</label>
-                    <input type="email" class="form-control" placeholder="Enter your email address" name="from">
-                </div>
+        <style>
+            body {
+                background: linear-gradient(120deg, #edf2ff, #f8f9fa);
+                min-height: 100vh;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
 
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Subject</label>
-                    <input type="text" class="form-control" placeholder="Enter subject" name="subject">
-                </div>
+            /* Header */
+            .main-title {
+                background: #0d6efd;
+                color: white;
+                padding: 18px;
+                text-align: center;
+                font-size: 24px;
+                font-weight: 600;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
 
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Message</label>
-                    <textarea rows="7" class="form-control" placeholder="Write your message here..."
-                        name="message"></textarea>
-                </div>
+            /* Card Styling */
+            .custom-card {
+                border: none;
+                border-radius: 14px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+                transition: 0.3s;
+            }
 
-                <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-send">Send Email</button>
-                    <button type="reset" class="btn btn-outline-secondary">Clear</button>
-                </div>
+            .custom-card:hover {
+                transform: translateY(-4px);
+            }
 
-            </form>
+            /* Form */
+            .form-control {
+                border-radius: 10px;
+                padding: 11px;
+            }
 
-            <!-- DIVIDER -->
+            .form-control:focus {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 .2rem rgba(13, 110, 253, .2);
+            }
 
-            <div class="divider"></div>
+            .btn-send {
+                border-radius: 10px;
+                padding: 11px;
+                font-weight: 600;
+            }
 
-            <!-- ================= SMS FORM ================= -->
+            /* payment box */
+            .payment-box {
+                text-align: center;
+            }
 
-            <h5 class="section-title">📱 Send SMS</h5>
-            {{success}}
-            <form action="{%url 'sendsms'%}" method="post">
-                {%csrf_token%}
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Phone Number</label>
-                    <input type="tel" class="form-control" placeholder="Enter phone number (9876543210)" name="phone">
-                </div>
+            .payment-box input {
+                text-align: center;
+                font-weight: 600;
+            }
 
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">SMS Message</label>
-                    <textarea rows="6" class="form-control" placeholder="Type your SMS message here..."
-                        name="message"></textarea>
-                </div>
+            .footer {
+                text-align: center;
+                font-size: 13px;
+                color: #6c757d;
+                margin-top: 15px;
+            }
+        </style>
 
-                <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-success btn-send">Send SMS</button>
-                    <button type="reset" class="btn btn-outline-secondary">Clear</button>
-                </div>
+    </head>
 
-            </form>
+    <body>
 
-            <div class="footer mt-3">
-                Email & SMS UI using Bootstrap 5
+        <div class="container py-4">
+
+            ```
+            <div class="main-title">
+                📨 Communication Center (Email • SMS • Payment)
             </div>
 
+            <div class="row g-4">
+
+                <!-- ================= EMAIL ================= -->
+                <div class="col-lg-4">
+                    <div class="card custom-card h-100">
+                        <div class="card-header bg-primary text-white fw-semibold text-center">
+                            📧 Send Email
+                        </div>
+                        <div class="card-body">
+
+                            {{msg}}
+
+                            <form action="{%url 'sendmail'%}" method="post">
+                                {%csrf_token%}
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">From Email</label>
+                                    <input type="email" class="form-control" name="from" placeholder="Enter your email">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Subject</label>
+                                    <input type="text" class="form-control" name="subject" placeholder="Enter subject">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Message</label>
+                                    <textarea rows="6" class="form-control" name="message"
+                                        placeholder="Write your email..."></textarea>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-send">Send Email</button>
+                                    <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= SMS ================= -->
+                <div class="col-lg-4">
+                    <div class="card custom-card h-100">
+                        <div class="card-header bg-success text-white fw-semibold text-center">
+                            📱 Send SMS
+                        </div>
+                        <div class="card-body">
+
+                            {{success}}
+
+                            <form action="{%url 'sendsms'%}" method="post">
+                                {%csrf_token%}
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone" placeholder="9876543210">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">SMS Message</label>
+                                    <textarea rows="6" class="form-control" name="message"
+                                        placeholder="Type SMS message..."></textarea>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-success btn-send">Send SMS</button>
+                                    <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= PAYMENT ================= -->
+                <div class="col-lg-4">
+                    <div class="card custom-card h-100">
+                        <div class="card-header bg-dark text-white fw-semibold text-center">
+                            💳 Razorpay Payment
+                        </div>
+                        <div class="card-body payment-box">
+
+                            <label class="fw-semibold mb-2">Enter Amount (₹)</label>
+                            <input type="number" id="amt" class="form-control mb-3" placeholder="Enter amount">
+
+                            <button id="rzp-button1" class="btn btn-warning w-100 btn-send">
+                                Pay with Razorpay
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer">
+                Bootstrap 5 Horizontal Dashboard UI
+            </div>
+            ```
+
         </div>
-    </div>
+
+        <!-- Razorpay -->
+
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+        <script>
+            document.getElementById('rzp-button1').onclick = function (e) {
+
+                e.preventDefault();
+                var amt = $("#amt").val()
+
+                $.get("payment", { amt }, function (rt) {
+
+                    var options = {
+                        "key": "rzp_test_SF5R7ur5nvvYLR",
+                        "amount": rt.amount,
+                        "currency": "INR",
+                        "name": "Tops Tech",
+                        "description": "Test Transaction",
+                        "image": "https://example.com/your_logo",
+                        "order_id": rt.id,
+                        "handler": function (response) {
+                            alert(response.razorpay_payment_id);
+                            alert(response.razorpay_order_id);
+                            alert(response.razorpay_signature)
+                        },
+                        "prefill": {
+                            "name": "<name>",
+                            "email": "<email>",
+                            "contact": "<phone>"
+                        },
+                        "notes": {
+                            "address": "Razorpay Corporate Office"
+                        },
+                        "theme": {
+                            "color": "#3399cc"
+                        }
+                    };
+
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                })
+            }
+        </script>
+
+    </body>
+
+    </html>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+
+        document.getElementById('rzp-button1').onclick = function (e) {
+
+            e.preventDefault();
+            var amt = $("#amt").val()
+            $.get("payment", { amt }, function (rt) {
+
+                var options = {
+                    "key": "rzp_test_SF5R7ur5nvvYLR", // Enter the Key ID generated from the Dashboard
+                    "amount": rt.amount, // Amount is in currency subunits. 
+                    "currency": "INR",
+                    "name": "Tops Tech",
+                    "description": "Test Transaction",
+                    "image": "https://example.com/your_logo",
+                    "order_id": rt.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "handler": function (response) {
+                        alert(response.razorpay_payment_id);
+                        alert(response.razorpay_order_id);
+                        alert(response.razorpay_signature)
+                    },
+                    "prefill": {
+                        "name": "<name>",
+                        "email": "<email>",
+                        "contact": "<phone>"
+                    },
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response) {
+                    alert(response.error.code);
+                    alert(response.error.description);
+                    alert(response.error.source);
+                    alert(response.error.step);
+                    alert(response.error.reason);
+                    alert(response.error.metadata.order_id);
+                    alert(response.error.metadata.payment_id);
+                });
+                rzp1.open();
+            })
+
+
+        }
+
+
+    </script>
+
+
+
+
+
+
 
 </body>
 

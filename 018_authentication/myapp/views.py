@@ -12,6 +12,9 @@ def index(request):
         uname = data.get("uname")
         password = data.get("pass")
 
+        if User.objects.filter(username = uname).exists():
+             return render(request,"index.html",{"err":"Username already exist"})
+
         user = User(first_name = fname,last_name=lname,username=uname)
         user.set_password(password)
         user.save()
@@ -26,6 +29,9 @@ def login_page(request):
         data = request.POST
         uname = data.get("uname")
         password = data.get("pass")
+
+       
+
 
         user = authenticate(username=uname,password=password)
         if user is None:

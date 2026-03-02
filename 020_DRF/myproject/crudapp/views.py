@@ -5,6 +5,7 @@ from crudapp.models import *
 from crudapp.serializer import StudentSerilaizer
 from rest_framework import status
 #list : view all data
+
 @api_view(['GET'])
 def list(request):
     all = Student.objects.all()

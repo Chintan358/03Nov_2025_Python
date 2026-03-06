@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'myapp',
     'crudapp',
     'empapp',
-    'productapp'
+    'productapp',
+    'relationapp'
 ]
 
 MIDDLEWARE = [

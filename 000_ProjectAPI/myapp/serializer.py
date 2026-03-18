@@ -9,7 +9,14 @@ from .models import Category, Product, Cart, CartItem, Order, OrderItem, Address
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email']
+        fields = '__all__'
+
+    def create(self, validated_data):
+       
+        user = User(username=validated_data['username']) 
+        user.set_password(validated_data['password'])   
+        user.save()
+        return user
 
 
 # -------------------------

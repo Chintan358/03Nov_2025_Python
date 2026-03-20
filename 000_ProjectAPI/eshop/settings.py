@@ -137,4 +137,7 @@ STATIC_URL = 'static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT= BASE_DIR/'media'
 
+RAZORPAY_KEY_ID='rzp_test_STKkFlTZJmOAWQ'
+RAZORPAY_KEY_SECRET='vDoIj5fckJDvYFBTwZAB18fv'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

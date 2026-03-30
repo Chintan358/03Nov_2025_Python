@@ -238,3 +238,14 @@ class OrderViewSet(ModelViewSet):
 
         serializer = self.get_serializer(order)
         return Response(serializer.data)
+
+
+def get_permissions(self):
+       
+        if self.action in ['list']:
+            permission_classes=[IsAdminUser]
+        elif self.action in ['create','update','destroy']:
+            permission_classes=[IsAuthenticated]
+        else:
+            permission_classes=[IsAuthenticated]
+        return [permission() for permission in permission_classes]

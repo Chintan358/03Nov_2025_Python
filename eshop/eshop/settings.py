@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j-*m0pa3i&=-ix39qbhs2z(ayir1jm#um_$zslb=g67%nmjmaa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,9 +88,17 @@ WSGI_APPLICATION = 'eshop.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '3nov_eshop',   # The name of the database you created
+        'USER': 'root',       # Your MySQL username (e.g., 'root' or a dedicated user)
+        'PASSWORD': 'root',   # Your MySQL password
+        'HOST': 'localhost',           # Or the IP address of your MySQL server
+        'PORT': '3306',                # The default MySQL port
     }
 }
 
